@@ -16,7 +16,7 @@ async function runSearch() {
     const grid = document.createElement("div");
     grid.className = "book-row";
 
-    books.slice(0, 10).forEach(book => {
+    books.slice(0, 10).forEach(book => { 
         const cover = book.cover_i
             ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`
             : "";
