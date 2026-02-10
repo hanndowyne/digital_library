@@ -1,8 +1,10 @@
 // GOOGLE BOOKS API
 export async function getGoogleBooks(query) {
-    const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=8`;
+    const url = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&maxResults=8`;
+
     const res = await fetch(url);
     const data = await res.json();
+
     return data.items || [];
 }
 

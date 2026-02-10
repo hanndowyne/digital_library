@@ -18,7 +18,7 @@ async function runSearch() {
 
     books.slice(0, 10).forEach(book => { 
         const cover = book.cover_i
-            ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`
+            ? `https://openlibrary.org/search.json?q=${encodeURIComponent(searchTerm)}&limit=10`
             : "";
 
         grid.innerHTML += `
