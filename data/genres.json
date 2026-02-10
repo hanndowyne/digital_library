@@ -1,0 +1,35 @@
+[
+    {
+        "id": "romance",
+        "title": "Romance",
+        "description": "Love stories and emotional journeys",
+        "icon": "❤️",
+        "apiSubject": "romance",
+        "featured": true,
+        "color": "#A07D54",
+        "layout": "horizontal",
+        "maxResults": 10
+    },
+    {
+        "id": "fantasy",
+        "title": "Fantasy",
+        "description": "Magic, worlds, and adventures",
+        "icon": "🐉",
+        "apiSubject": "fantasy",
+        "featured": true,
+        "color": "#DFD4C3",
+        "layout": "horizontal",
+        "maxResults": 10
+    },
+    {
+        "id": "comedy",
+        "title": "Comedy",
+        "description": "Funny and lighthearted reads",
+        "icon": "😂",
+        "apiSubject": "humor",
+        "featured": true,
+        "color": "#EEEAE2",
+        "layout": "horizontal",
+        "maxResults": 10
+    }
+]
