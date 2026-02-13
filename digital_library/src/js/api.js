@@ -1,17 +1,23 @@
-// GOOGLE BOOKS API
-export async function getGoogleBooks(query) {
-    const url = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&maxResults=8`;
+export async function fetchHomeBooks() {
+    const genres = [
+        "fiction",
+        "romance",
+        "fantasy",
+        "science",
+        "history",
+        "mystery"
+    ];
 
-    const res = await fetch(url);
-    const data = await res.json();
+    let allBooks = [];
 
-    return data.items || [];
-}
+    for (let genre of genres) {
+        const res = await fetch(
+            `https://openlibrary.org/search.json?q=${genre}`
+        );
 
-// OPEN LIBRARY SEARCH API
-export async function searchOpenLibrary(query) {
-    const url = `https://openlibrary.org/search.json?q=${encodeURIComponent(query)}`;
-    const res = await fetch(url);
-    const data = await res.json();
-    return data.docs || [];
+        const data = await res.json();
+        allBooks = allBooks.concat(data.docs.slice(0, 5));
+    }
+
+    return allBooks;
 }

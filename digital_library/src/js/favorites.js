@@ -1,10 +1,37 @@
-import { getData, saveData } from './storage.js';
+const display = document.querySelector("#favorites-list");
 
-const FAVORITES_KEY = 'favorites';
+function loadFavorites() {
+  const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
-export function saveFavorite(book) {
-  const favorites = getData(FAVORITES_KEY);
-  favorites.push(book);
-  saveData(FAVORITES_KEY, favorites);
-  alert('Book added to favorites!');
+  if (favorites.length === 0) {
+    display.innerHTML = "<p>No favorite books yet.</p>";
+    return;
+  }
+
+  display.innerHTML = favorites.map(book => `
+    <div class="card">
+      <img src="https://covers.openlibrary.org/b/id/${book.cover}-M.jpg">
+      <h3>${book.title}</h3>
+      <p>${book.author}</p>
+      <button class="remove-btn" data-title="${book.title}">
+        ❌ Remove
+      </button>
+    </div>
+  `).join("");
 }
+
+document.addEventListener("click", function (e) {
+  if (e.target.classList.contains("remove-btn")) {
+
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    favorites = favorites.filter(book =>
+      book.title !== e.target.dataset.title
+    );
+
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    loadFavorites();
+  }
+});
+
+loadFavorites();
